@@ -1,0 +1,8 @@
+<h1>Product Details</h1>
+<p *ngIf="error" style="color : red">{{error}}</p>
+<h4>Name: <span>{{current.name}}</span></h4>
+<h4>Qty: <span>{{current.qty}}</span></h4>
+<h4>Price: <span>${{current.price}}</span></h4>
+
+<button [routerLink]="['/']" class="btn btn-light">Back</button>
+<button *ngIf='deleteprod' (click)="Delete(current.id)" class="btn btn-danger">Delete</button>

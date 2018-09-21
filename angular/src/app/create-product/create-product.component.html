@@ -1,0 +1,42 @@
+<h1>New Product</h1>
+<p>{{newProduct | json}}</p>
+<p *ngIf="nameerror" class="text-primary">{{nameerror['message']}}</p>
+<p *ngIf="qtyerror" class="text-primary">{{qtyerror['message']}}</p>
+<p *ngIf="priceerror" class="text-primary">{{priceerror['message']}}</p>
+
+<form (submit)="CreateProduct()">
+  <p>Name <input 
+    type="text" 
+    name="name" 
+    required
+    minlength="3"
+    [(ngModel)]="newProduct.name"
+    #name = "ngModel"
+    />
+  </p>
+  <p>Qty <input 
+    type="number"
+    name="qty"
+    required
+    [(ngModel)]="newProduct.qty "
+    #qty="ngModel"
+      />
+    </p>
+  <p>Price <input
+    type="number"
+    name="price" 
+    required
+    [(ngModel)]="newProduct.price"
+    #price = "ngModel"/>
+    </p>
+    <!-- <p *ngIf = "name.$dirty">Product name require at least 3 characters</p> -->
+    <p *ngIf = "name.invalid" class="text-danger">invalid name</p>
+    <p *ngIf = "qty.invalid" class="text-danger">invalid Qty</p>
+    <p *ngIf = "price.invalid" class="text-danger">invalid Price</p>
+    
+
+  <button type="submit" class="btn btn-warning" *ngIf="name.valid && qty.valid && price.valid">Create</button>
+</form>
+<button [routerLink]="['/']">Cancel</button>
+
+

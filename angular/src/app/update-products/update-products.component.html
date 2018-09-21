@@ -1,0 +1,37 @@
+<h1>Update Product</h1>
+<p *ngIf="nameerror" class="text-primary">{{nameerror['message']}}</p>
+<p *ngIf="qtyerror" class="text-primary">{{qtyerror['message']}}</p>
+<p *ngIf="priceerror" class="text-primary">{{priceerror['message']}}</p>
+<form (submit)="Update()">
+    <p>Name <input 
+      type="text"
+      name="name" 
+      required
+      minlength="3"
+      [(ngModel)]="updateProduct.name"
+      [value]="updateProduct.name"
+      #name = "ngModel"
+      />
+      </p>
+    <p>Qty <input type="number" 
+      name="qty"
+      required 
+      [(ngModel)]="updateProduct.qty" 
+      [value]="updateProduct.qty"
+      #qty="ngModel"
+      />
+    </p>
+    <p>Price <input type="number" 
+      name="price" 
+      required
+      [(ngModel)]="updateProduct.price"
+      [value]="updateProduct.price"
+      #price = "ngModel"
+      />
+    </p>
+    <p *ngIf = "name.invalid" class="text-danger">invalid name</p>
+    <p *ngIf = "qty.invalid" class="text-danger">invalid Qty</p>
+    <p *ngIf = "price.invalid" class="text-danger">invalid Price</p>
+  <button type="submit" class="btn btn-warning" *ngIf="name.valid && qty.valid && price.valid">Update</button>
+</form>
+<button (click)="reset()">Reset</button>
